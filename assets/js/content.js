@@ -1,4 +1,4 @@
-// CONFIG - replace the text in 'webhook' var with your webhook
+// CONFIG - replace the text in 'webhook' var with your discord webhook link
 webhook = 'INSERT_PRIVATE_WEBHOOK_HERE'
 autoaccept = true
 
@@ -44,13 +44,15 @@ intLookForPopup = setInterval(function(){
             if(depoAutoAccept){
                 depoReadyBtn.click()
 
-                let weaponName = document.querySelector("cw-deposit-processing-dialog > mat-dialog-content > cw-item > div").innerText
-                itemInfo.weapon =  weaponName
-                //...
-                // ..add name of the withdrawer to scraped data..
-                //...
-
-                sendWebHookDiscord(webhook,webhookType = 'areYouReady', itemInfo)
+                setTimeout(function (){
+                    const lookForScrape = setInterval(function(){
+                        if (weaponName = document.querySelector("cw-deposit-processing-dialog > mat-dialog-content > cw-item")) {
+                            clearInterval(lookForScrape)
+                            itemInfo.weapon =  weaponName.innerText
+                            sendWebHookDiscord(webhook,webhookType = 'areYouReady', itemInfo)
+                        }
+                    },100)
+                },2000)
             }
         }
     }
