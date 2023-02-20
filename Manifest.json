@@ -1,0 +1,31 @@
+{
+  "name": "Roll AutoAccept",
+  "description": "Auto accept for csgoroll.com deposits with DC notifications",
+  "version": "0.0.1",
+  "author": "TG",
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/ico/coin-ico.png",
+    "32": "assets/ico/coin-ico.png",
+    "48": "assets/ico/coin-ico-large.png",
+    "128": "assets/ico/coin-ico-large.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.csgoroll.com/*"],
+      "js": ["assets/js/content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "assets/popup/index.html",
+    "scripts": ["assets/popup/popup.js"]
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.csgoroll.com/*"
+  ]
+}
